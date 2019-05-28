@@ -1,0 +1,164 @@
+/* .navbar {
+    background: rgba(76, 175, 80, 0.1);
+} */
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-control {
+    background-color: transparent;
+    color: black;
+}
+
+.cs-content {
+    margin-top: 25px;
+}
+
+.cs-section-header {
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.cs-form-add, .cs-form-edit  {
+    padding: 25px;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cs-form-add {
+    /* background-image: url('./picture/microphone.jpeg'); */
+}
+
+.cs-form-edit {
+    /* background-image: url('./picture/guitar.jpg'); */
+}
+
+.cs-label-field-bak {
+    color: red;
+}
+
+.cs-form-control {
+    border: 1px solid gray;
+}
+
+.cs-text-center, .cs-text-error {
+    text-align: center;
+}
+
+.cs-text-error {
+    font-style: italic;
+    color: white;
+}
+
+.cs-empty-table {
+    background-color: azure;
+    color: grey;
+}
+
+/* ------------------------------------- */
+
+#body-row {
+    margin-left:0;
+    margin-right:0;
+}
+#sidebar-container {
+    min-height: 100vh;
+    background-color: #333;
+    padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+.sidebar-expanded {
+    width: 230px;
+}
+.sidebar-collapsed {
+    width: 100px;
+}
+
+/* Menu item*/
+#sidebar-container .list-group a {
+    height: 90px;
+    color: white;
+    padding-top: 30px;
+}
+
+/* Submenu item*/
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 80px;
+    padding-left: 30px;
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* Separators */
+.sidebar-separator-title {
+    background-color: #333;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: #333;
+    height: 25px;
+}
+.logo-separator {
+    background-color: #333;
+    height: 60px;
+}
+
+/* Closed submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+/* Opened submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+
+#sidebar-container .d-flex span.active {
+  background-color: #fff;
+}
+
+.dropdown-submenu{
+    float: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: inherit;
+    background-color: #333;
+    min-width: 160px;
+    /* margin-left: 240px; */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a span {
+    overflow: hidden;
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+ }
+  
+  .dropdown-content a:hover {
+    /* background-color: #ddd; */
+    /* background: #fff; */
+    text-decoration: none;
+  }
+  
+  .dropdown-submenu:hover .dropdown-content {
+    display: block;
+  }

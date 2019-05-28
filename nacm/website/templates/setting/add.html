@@ -1,0 +1,308 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>N A C M - Network Automation Management</title>
+    <!-- Bootstrap CSS -->
+    {% include 'assets/css.html' %}
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        {% include 'navigation.html' %}
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    {% csrf_token %}
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Add Syntax Setting </h2>
+                            <p class="pageheader-text">Configure syntax template for network device.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Setting</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Add</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+
+                <div class="row">
+
+                    <div class="col-lg-12 align-items-center">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <div class="row spacer">
+
+                                    <div class="col-2">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            {% render_field form.sett_name class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row spacer">
+                                    <div class="col-2">
+                                        <label>Description</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            {% render_field form.sett_name_desc class="form-control" %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <div class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                                                    aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                    <h5 class="accordion-spc">Static Routing</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse1" class="panel-collapse collapse in">
+                                            <div class="form-group card-block">
+                                                <div class="row spacer">
+                                                    <div class="col-2">
+                                                        <label class="accordion-spc-label">Static routing</label>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="input-group accordion-spc-label">
+                                                            {% render_field form.sett_static_routing class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <div class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                                                    aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                    <h5 class="accordion-spc"> Dynamic Routing</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse in">
+                                            <div class="form-group card-block">
+                                                <div class="row spacer">
+                                                    <div class="col-2">
+                                                        <label class="accordion-spc-label">OSPF routing</label>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="input-group accordion-spc-label">
+                                                            {% render_field form.sett_dynamic_routing_ospf class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group card-block">
+                                                <div class="row spacer">
+                                                    <div class="col-2">
+                                                        <label class="accordion-spc-label">RipV1 routing</label>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="input-group accordion-spc-label">
+                                                            {% render_field form.sett_dynamic_routing_ripv1 class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group card-block">
+                                                <div class="row spacer">
+                                                    <div class="col-2">
+                                                        <label class="accordion-spc-label">RipV2 routing</label>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="input-group accordion-spc-label">
+                                                            {% render_field form.sett_dynamic_routing_ripv2 class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <div class="mb-0">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                                                        aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                        <h5 class="accordion-spc">BGP Routing</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse3" class="panel-collapse collapse in">
+                                                <div class="form-group card-block">
+                                                    <div class="row spacer">
+                                                        <div class="col-2">
+                                                            <label class="accordion-spc-label">Bgp routing</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="input-group accordion-spc-label">
+                                                                {% render_field form.sett_dynamic_routing_bgp class="form-control" %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <div class="mb-0">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                                                        aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                        <h5 class="accordion-spc">Vlan</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse4" class="panel-collapse collapse in">
+                                                <div class="form-group card-block">
+                                                    <div class="row spacer">
+                                                        <div class="col-2">
+                                                            <label class="accordion-spc-label">Vlan</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="input-group accordion-spc-label">
+                                                                {% render_field form.sett_vlan class="form-control" placeholder="fill with vlan configuration syntax" %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <div class="mb-0">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                                                        aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                        <h5 class="accordion-spc">Backup</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse4" class="panel-collapse collapse in">
+                                                <div class="form-group card-block">
+                                                    <div class="row spacer">
+                                                        <div class="col-2">
+                                                            <label class="accordion-spc-label">Backup</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="input-group accordion-spc-label">
+                                                                {% render_field form.sett_backup class="form-control" placeholder="fill with display configuration syntax, ex: show running-configuration" %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <div class="mb-0">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"
+                                                        aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                        <h5 class="accordion-spc">Restore</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse5" class="panel-collapse collapse in">
+                                                <div class="form-group card-block">
+                                                    <div class="row spacer">
+                                                        <div class="col-2">
+                                                            <label class="accordion-spc-label">Restore</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="input-group accordion-spc-label">
+                                                                {% render_field form.sett_restore class="form-control" placeholder="fill with import configuration syntax, ex: import" %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+
+                            </div>
+
+                            <div class="form-group">
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row justify-content-start">
+                                    <div class="col-lg-1">
+                                        <input type="submit" class="btn btn-primary btn-block" value="Add" name="save" />
+                                    </div>
+                                    <a href="/setting" id="cancel" name="cancel" class="btn btn-danger text-white">Cancel</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        {% include 'assets/js.html' %}
+</body>
+
+</html>

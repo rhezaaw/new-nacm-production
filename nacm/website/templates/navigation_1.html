@@ -1,0 +1,115 @@
+{% load staticfiles %}
+
+{% block container %}
+<!-- Bootstrap NavBar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'image/router.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+      <span class="menu-collapsed">NACM</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+         
+        <!-- This menu is hidden in bigger devices with d-sm-none. 
+             The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+        <li class="nav-item dropdown d-sm-block d-md-none">
+          <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+              <a class="dropdown-item" href="#">Dashboard</a>
+              <a class="dropdown-item" href="#">Config</a>
+              <a class="dropdown-item" href="#">Backup</a>
+              <a class="dropdown-item" href="#">Import</a>
+          </div>
+        </li><!-- Smaller devices menu END -->
+        
+      </ul>
+    </div>
+  </nav><!-- NavBar END -->
+  
+  
+  <!-- Bootstrap row -->
+  <div class="row" id="body-row">
+      <!-- Sidebar -->
+      <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+          <!-- Bootstrap List Group -->
+          <ul class="list-group">
+              <!-- Separator with title -->
+              <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                  <small>MAIN MENU</small>
+              </li>
+              <!-- /END Separator -->
+              <!-- Menu with submenu -->
+              <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mr-3"></span>
+                    <span><img src="{% static 'image/home.png' %}" width="20" height="20"></span>
+                    <span class="mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Dashboard</span>
+                  </div>
+              </a>
+              <!-- Submenu content -->
+  
+              <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mr-3"></span>
+                    <span><img src="{% static 'image/config.png' %}" width="20" height="20"></span>
+                    <span class="mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Config</span>
+                    <!-- <span class="mr-5"></span> -->
+                    <span class="text-right sub-menu-icon ml-auto"><img src="{% static 'image/chevron-down.svg' %}" width="20" height="20"></span>
+                  </div>
+              </a>
+              <!-- Submenu content -->
+              <div id='submenu2' class="collapse sidebar-submenu dropdown-submenu">
+                  <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                      <span class="badge badge-pill badge-primary ml-2">1</span>
+                      <span>&nbsp</span>
+                      <span class="menu-collapsed">Routing</span>
+                  </a>
+                  <div class="dropdown-content">
+                    <a href="">
+                      <span class="ml-5"> » &nbsp Static</span>
+                    </a>
+                    <a href="">
+                      <span class="ml-5"> » &nbsp Dynamic</span>
+                    </a>
+                  </div>
+                  <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                      <span class="badge badge-pill badge-primary ml-2">2</span>
+                      <span>&nbsp</span>
+                      <span class="menu-collapsed">Vlan</span>
+                  </a>
+                  <a href="code_based" class="list-group-item list-group-item-action bg-dark text-white">
+                     <span class="badge badge-pill badge-primary ml-2">3</span>
+                     <span>&nbsp</span>
+                     <span class="menu-collapsed">Code Based</span>
+                  </a>
+              </div>            
+              <a href="backup" class="bg-dark list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mr-3"></span>
+                    <span><img src="{% static 'image/down.png' %}" width="20" height="20"></span>
+                    <span class="mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Backup</span>  
+                  </div>
+              </a>
+              <a href="restore" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mr-3"></span>
+                    <span><img src="{% static 'image/up.png' %}" width="20" height="20"></span>
+                    <span class="mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Import</span>   
+                </div>
+            </a>
+   
+          </ul><!-- List Group END-->
+      </div><!-- sidebar-container END -->
+
+
+
+{% endblock %}

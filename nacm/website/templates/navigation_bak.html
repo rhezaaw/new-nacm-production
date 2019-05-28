@@ -1,0 +1,110 @@
+{% load staticfiles %}
+
+{% block container %}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">
+    <img src="{% static 'image/router.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+    <span class="menu-collapsed">NACM</span>
+  </a>
+</nav><!-- NavBar END -->
+
+
+<!-- Bootstrap row -->
+<div class="row" id="body-row">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+            <!-- Separator with title -->
+            <!-- <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>MAIN MENU</small>
+            </li> -->
+            <!-- /END Separator -->
+            <!-- Menu with submenu -->
+            <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center" style="height:10px; padding:20px">
+              <div class="d-flex w-10 justify-content-start align-items-center">
+                  <span id="collapse-text" class="menu-collapsed"><<</span>
+              </div>
+            </a>
+
+
+
+            <a href="home" class="bg-dark list-group-item list-group-item-action flex-column align-items-center" >
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span><img src="{% static 'image/home.png' %}" width="20" height="20"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Dashboard</span>
+                </div>
+            </a>
+
+            <a href="#submenu1" class="bg-dark list-group-item list-group-item-action flex-column align-items-center" >
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span><img src="{% static 'image/config.png' %}" width="20" height="20"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Config</span>
+                </div>
+            </a>
+
+            <!-- Submenu content -->
+            <div id='submenu1' class="collapse sidebar-submenu">
+                <a href="konfig" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Charts</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Reports</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Tables</span>
+                </a>
+            </div>
+
+            <a href="backup" class="bg-dark list-group-item list-group-item-action flex-column align-items-center" >
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span><img src="{% static 'image/down.png' %}" width="20" height="20"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Backup</span>
+                </div>
+            </a>
+
+            <a href="restore" class="bg-dark list-group-item list-group-item-action flex-column align-items-center" >
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span><img src="{% static 'image/up.png' %}" width="20" height="20"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
+                    <span id="menu-name" class="menu-collapsed">Import</span>
+                </div>
+            </a>
+
+            
+
+            <!-- Submenu content -->
+            <!-- <div id='submenu1' class="sidebar-submenu collapse show">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Charts</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Reports</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Tables</span>
+                </a>
+            </div> -->
+
+            <!-- Logo -->
+            <!-- <li class="list-group-item logo-separator d-flex justify-content-center">
+                <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' width="30" height="30" />
+            </li> -->
+        </ul><!-- List Group END-->
+    </div><!-- sidebar-container END -->
+
+
+
+
+{% endblock %}

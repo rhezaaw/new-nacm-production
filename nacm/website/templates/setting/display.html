@@ -1,0 +1,135 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>N A C M - Network Automation Management</title>
+    <!-- Bootstrap CSS -->
+    {% include 'assets/css.html' %}
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        {% include 'navigation.html' %}
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    {% csrf_token %}
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Display Syntax Setting </h2>
+                            <p class="pageheader-text">Configure syntax template for network device.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Setting</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Display</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+
+                <div class="row">
+
+                    <!-- ============================================================== -->
+                    <!-- hoverable table -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header justify-content-end">
+                                    <a class="btn btn-sm btn-outline-success justify-content-end" href="/setting/add">
+                                        <i class="fas fa-fw fa fa-plus-circle" aria-hidden="true"></i><span class="mr-1"></span> Add
+                                    </a>
+                            </h5>
+                            
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Vendor</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for setting in settings %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ setting.sett_name }}</td>
+                                            <td>{{ setting.sett_name_desc }}</td>
+                                            <td>
+                                                <a class="btn btn-sm btn-outline-primary" href="/setting/edit/{{ setting.id }}">
+                                                    <i class="fa fa-pencil-alt" aria-hidden="true"></i><span class="mr-1"></span> Edit
+                                                </a>
+                                                <a class="btn btn-sm btn-outline-danger" onclick="sendData({{ setting.id }})"
+                                                    data-toggle="modal" data-target="#exampleModalCenter">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i><span class="mr-1"></span> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% if not settings %}
+                                        <tr>
+                                            <td colspan="6" class="cs-text-center cs-empty-table"> the data is still empty </td>
+                                        </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end hoverable table -->
+                    <!-- ============================================================== -->
+                </div>
+
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure want to Delete this data ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                            <a class="btn btn-danger" id="btn-delete" href="">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        {% include 'assets/js.html' %}
+</body>
+
+</html>

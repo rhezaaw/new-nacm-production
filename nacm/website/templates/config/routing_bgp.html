@@ -1,0 +1,271 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>N A C M - Network Automation Management</title>
+  <!-- Bootstrap CSS -->
+  {% include 'assets/css.html' %}
+</head>
+
+<body>
+  <!-- ============================================================== -->
+  <!-- main wrapper -->
+  <!-- ============================================================== -->
+  <div class="dashboard-main-wrapper">
+    {% include 'navigation.html' %}
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+      <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+              <h2 class="pageheader-title">BGP Route Configuration</h2>
+              <p class="pageheader-text">Configure BGP routing to the device</p>
+              <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Configuration</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Routing</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">BGP</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+
+        <div class="content mt-3">
+            <div class="card">
+  
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8 pr-md-1 offset-sm-2" >
+
+                    {% if messages %}
+                    {% for message in messages %}
+                          <div id="output_process" class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
+                    {% endfor %}
+                    {% endif %}
+
+                        <div class="row cs-form-add">
+                            <div class="col-lg-12 align-items-center">
+                              <form method="post">
+                                {% csrf_token %}
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                      
+                                    <div class="col-8">
+                                      <label>{{form.username.label}}</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        {% render_field form.username class="form-control" %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-8">
+                                      <label>{{form.password.label}}</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                          {% render_field form.password class="form-control" %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                                {{ ipform.management_form }} 
+                                {% for form in ipform %}
+                                <div class="form-group">
+                                  <div class="row form-row spacer">
+                                    <div class="col-8">
+                                      <label>IP Address</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        {% render_field form.ipaddr class="form-control form-fix-size" required='required' %}
+                                        <span class="mr-1"></span>
+                                        {% render_field form.vendor class="form-control" required='required' %}                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-success add-form-row">+</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="verif_koneksi">
+                                      <p id="verif-koneksi-0" ></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                {% endfor %}
+
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-8">
+                                      <label>Name</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        <input type="text" class="form-control" name="bgp_name" placeholder="Name">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-8">
+                                      <label>ASN</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        <input type="text" class="form-control" name="bgp_asn" placeholder="Autonomous system number">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-8">
+                                      <label>Router Id</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        <input type="text" class="form-control" name="bgp_router_id" placeholder="Router Id">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                     
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-8">
+                                      <label>Peer</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        <input type="text" class="form-control" name="bgp_neighbor_address" placeholder="Neighbor address">
+                                        <input type="text" class="form-control" name="bgp_neighbor_asn" placeholder="AS of remote neighbor">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row spacer">
+                                      <div class="col-8">
+                                        <label>Advertise</label>
+                                      </div>
+                                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 field_wrapper_bgp">
+                                        <div class="input-group">
+                                          <input type="text" class="form-control" name="bgp_network" placeholder="Network">
+                                          <input type="text" class="form-control" name="bgp_prefix" placeholder="Prefix">
+                                          <a href="javascript:void(0);" class="add_button_bgp btn btn-warning" title="Add field">+</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                        
+                      
+                                <div class="spacer-divide">
+                                  
+                                </div>
+                      
+                                <div class="form-group">
+                                  <div class="row justify-content-start">
+                                    <div class="mx-auto" style="width: 200px;">
+                                      <input type="submit" class="btn btn-primary btn-block" value="Run" name="save" />
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                              </form>
+                            </div>
+                          </div>
+
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>       
+ 
+
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end main wrapper -->
+  <!-- ============================================================== -->
+  <!-- Optional JavaScript -->
+  {% include 'assets/js.html' %}
+
+</body>
+<script src="{% static 'js/verif.js' %}"></script>
+<script>
+
+  $(document).ready(function(){
+    var y = document.getElementsByClassName("alert");
+    // for (var i=0; i < y.length; i++){
+    //   var x =y[i].innerHTML;
+    var x = $('.alert');
+    if (y.length != ''){
+    bootbox.alert({
+    title: "Output",
+    message: x,
+    backdrop: true,
+    centerVertical: true,
+    scrollable: true
+    });
+    }
+
+  });
+
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      var maxField = 100; //Input fields increment limitation
+      var addButton = $('.add_button_bgp'); //Add button selector
+      var wrapper = $('.field_wrapper_bgp'); //Input field wrapper
+      var fieldHTML = '<div class="spacer-divide"></div><div class="input-group"><input type="text" class="form-control" name="bgp_network" placeholder="Network"><input type="text" class="form-control" name="bgp_prefix" placeholder="Prefix"><a href="javascript:void(0);" class="remove_button_bgp btn btn-danger" title="Remove field">-</a></div>'; //New input field html 
+      var x = 1; //Initial field counter is 1
+      
+      //Once add button is clicked
+      $(addButton).click(function(){
+          //Check maximum number of input fields
+          if(x < maxField){ 
+              x++; //Increment field counter
+              $(wrapper).append(fieldHTML); //Add field html
+          }
+      });
+      
+      //Once remove button is clicked
+      $(wrapper).on('click', '.remove_button_bgp', function(e){
+          e.preventDefault();
+          $(this).parent('div').remove(); //Remove field html
+          x--; //Decrement field counter
+      });
+  });
+  </script>
+
+</html>

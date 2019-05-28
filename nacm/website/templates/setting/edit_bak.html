@@ -1,0 +1,216 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nacm App</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+
+<body>
+    <!-- Bootstrap NavBar -->
+    {% include 'navigation.html' %}
+    <!-- MAIN -->
+    <div class="col">
+
+        <div class="card">
+            <h4 id="title-menu" class="card-header">Edit \ {{ name }}</h4>
+        </div>
+
+        <div class="row cs-form-add">
+            <div class="col-lg-12 align-items-center">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <div class="row spacer">
+
+                            <div class="col-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                        {% render_field form.sett_name class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <div class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                                            aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                            <h5>Static Routing</h5>
+                                        </a>
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="form-group card-block">
+                                        <div class="row spacer">
+                                            <div class="col-2">
+                                                <label>Static routing</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="input-group">
+                                                        {% render_field form.sett_static_routing class="form-control" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <div class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                                            aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                            <h5>Dynamic Routing</h5>
+                                        </a>
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse in">
+                                    <div class="form-group card-block">
+                                        <div class="row spacer">
+                                            <div class="col-2">
+                                                <label>OSPF routing</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="input-group">
+                                                        {% render_field form.sett_dynamic_routing_ospf class="form-control" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group card-block">
+                                        <div class="row spacer">
+                                            <div class="col-2">
+                                                <label>RipV1 routing</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="input-group">
+                                                        {% render_field form.sett_dynamic_routing_ripv1 class="form-control" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group card-block">
+                                        <div class="row spacer">
+                                            <div class="col-2">
+                                                <label>RipV2 routing</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="input-group">
+                                                        {% render_field form.sett_dynamic_routing_ripv2 class="form-control" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <div class="mb-0">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                                                aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                                <h5>BGP Routing</h5>
+                                            </a>
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapse3" class="panel-collapse collapse in">
+                                        <div class="form-group card-block">
+                                            <div class="row spacer">
+                                                <div class="col-2">
+                                                    <label>Bgp routing</label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <div class="input-group">
+                                                            {% render_field form.sett_dynamic_routing_bgp class="form-control" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-2">
+                                <input type="submit" class="btn btn-primary btn-block" value="Save" name="save" />
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- <div class="row cs-section-header">
+        <div class="col-lg-12"><h2>Edit \ {{ name }}</h2></div>
+    </div> -->
+        <!-- status to trigger the Modal or otherwise -->
+        <input type="hidden" id="status" value="{{ status }}">
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Edit data {{ name }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- Main Col END -->
+
+
+
+
+</body>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/nav.js' %}"></script>
+<script src="{% static 'js/verif.js' %}"></script>
+
+</html>

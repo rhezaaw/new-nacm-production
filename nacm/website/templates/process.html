@@ -1,0 +1,166 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>N A C M - Network Automation Management</title>
+  <!-- Bootstrap CSS -->
+  {% include 'assets/css.html' %}
+</head>
+
+<body>
+  <!-- ============================================================== -->
+  <!-- main wrapper -->
+  <!-- ============================================================== -->
+  <div class="dashboard-main-wrapper">
+    {% include 'navigation.html' %}
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+      <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+              <h2 class="pageheader-title">Restore Configuration</h2>
+              <p class="pageheader-text">Import and restore configuration file to your network device</p>
+              <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Configuration</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Restore</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+
+        <div class="content mt-3">
+            <div class="card">
+  
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8 pr-md-1 offset-sm-2" >
+
+                        <div class="row cs-form-add">
+                            <div class="col-lg-12 align-items-center">
+                              <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                      
+                                    <div class="col-2">
+                                      <label>{{form.username.label}}</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        {% render_field form.username class="form-control" %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-2">
+                                      <label>{{form.password.label}}</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                          {% render_field form.password class="form-control" %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                                {{ ipform.management_form }} {% for form in ipform %}
+                                <div class="form-group">
+                                  <div class="row form-row spacer">
+                                    <div class="col-2">
+                                      <label>IP Address</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                        {% render_field form.ipaddr class="form-control form-fix-size" %}
+                                        <span class="mr-1"></span>
+                                        {% render_field form.vendor class="form-control" %}                                        
+                                        <div class="input-group-append">
+                                          <button class="btn btn-success add-form-row">+</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="verif_koneksi">
+                                      <p id="verif-koneksi-0"></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                {% endfor %}
+                      
+                                <div class="form-group">
+                                  <div class="row spacer">
+                                    <div class="col-4">
+                                      <label>Configuration File</label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                      <div class="input-group">
+                                          <div class="input-group">
+                                              <div class="file-upload">
+                                                <input type="file" class="custom-file-input" name="files" id="files" multiple />
+                                                <label class="custom-file-label" for="files">Choose file here ...</label>
+                                              </div>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                      
+                                <div class="spacer-divide">
+                                  
+                                </div>
+                      
+                                <div class="form-group">
+                                  <div class="row justify-content-start">
+                                    <div class="mx-auto" style="width: 200px;">
+                                      <input type="submit" class="btn btn-primary btn-block" value="Restore" name="upload" />
+                                    </div>
+                                  </div>
+                                </div>
+                      
+                              </form>
+                            </div>
+                          </div>
+
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>       
+ 
+
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end main wrapper -->
+  <!-- ============================================================== -->
+  <!-- Optional JavaScript -->
+  {% include 'assets/js.html' %}
+
+</body>
+<script src="{% static 'js/verif.js' %}"></script>
+</html>
