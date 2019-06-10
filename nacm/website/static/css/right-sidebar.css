@@ -1,0 +1,98 @@
+/* Variables */
+
+/* Mixins*/
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+/* Style tweaks */
+html, 
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height: 100%;
+}
+body {
+  padding-top: 70px;
+}
+
+
+/* Off Canvas */
+
+@media screen and (min-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    right: 25%;
+    @include transition(all, .3s, ease-out);
+    &.active {
+       right: 0; /* 3 columns */
+      .content {
+        width: 100%; /* 12 columns */
+      }      
+    }
+    .content {
+      width: 75%; /* 9 columns */
+      float: right;
+      @include transition(all, .3s, ease-out);
+    }
+    .sidebar-offcanvas {
+      position: absolute;
+      top: 0;
+      width: 25%; /* 3 columns */
+      right: -25%; /* 3 columns */
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    right: 0;
+    position: relative;
+    @include transition(all, .3s, ease-out);
+    &.active {
+      right: 50%; /* 6 columns */
+    }
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+    right: -50%; /* 6 columns */
+  }
+}
+
+/* styling the sidebar and the toggle button */
+
+.content {
+  position: relative;
+}
+
+.sidebar {
+  background: rgba(51, 122, 183, 0.09);
+  padding: 10px 15px;
+  margin-top:-20px;
+  border-radius: 0 0 0 5px;
+}
+.btn-collapse {
+  position: absolute;
+  padding: 8px 12px;
+  border-radius: 5px 5px 0 0;
+  top: 20px;
+  right: 0;
+  margin-right: -35px;
+  background: rgba(51, 122, 183, 0.09);
+  transform: rotate(-90deg);
+  @include transition(all, .3s, ease-out);
+}
+.row-offcanvas.active .btn-collapse {
+  right: 0;
+  margin-right: -8px;
+  @include transition(all, .3s, ease-out);
+  
+  i {
+    transform: rotate(180deg);
+  }
+}

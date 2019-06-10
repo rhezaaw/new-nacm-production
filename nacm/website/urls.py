@@ -5,11 +5,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('config/code_based', views.config_codeBased, name="config/code_based"),
+    path('config/code_based', views.config_codeBased.as_view(), name="config/code_based"),
     path('config/routing_static', views.config_static.as_view(), name="config/routing_static"),
-    path('config/routing_dynamic', views.config_dynamic, name="config/routing_dynamic"),
-    path('config/routing_bgp', views.config_bgp, name="config/routing_bgp"),
-    path('config/vlan', views.vlan, name="config/vlan"),
+    path('config/routing_dynamic', views.config_dynamic.as_view(), name="config/routing_dynamic"),
+    path('config/routing_bgp', views.config_bgp.as_view(), name="config/routing_bgp"),
+    path('config/vlan', views.vlan.as_view(), name="config/vlan"),
     path('restore', views.restore, name="restore"),
     path('backup', views.backup, name="backup"),
     path('setting', views.Settings_display, name="setting/display"),

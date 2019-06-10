@@ -53,15 +53,6 @@ def ip_validation(request):
 def history(request):
 	return render(request, 'history.html')
 
-# def read_file_static(request):
-# 	if request.method == 'GET':
-# 		showCode_dir = os.path.join(settings.MEDIA_ROOT, "showCode/")
-# 		print (showCode_dir+'routing_conf.py')
-# 		f = open(showCode_dir+'routing_conf.py', 'r')
-# 		file_content = f.read()
-# 		f.close()
-# 		context = {'file_content': file_content}
-# 		return render(request, "config/routing_static.html", context)
 
 class LoginInfo(generics.ListCreateAPIView):
 	queryset = models.Connect.objects.all()

@@ -1,13 +1,4 @@
-import paramiko
-import os, os.path, time
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
-from ..models import Connect
-from ..forms import NacmForm, IpFormset, UploadForm
-from .. import models
-from scp import SCPClient
-from django.conf import settings
+{% block container %}
 
 def restore(request):
 	ip_list = []
@@ -127,3 +118,5 @@ def restore(request):
 		ipform = IpFormset()
 		upform = UploadForm()
 		return render(request, 'restore.html', {'form': formm, 'logins': Connect.objects.all(), 'ipform': ipform, 'upform': upform })
+
+{% endblock %}

@@ -1,14 +1,4 @@
-import paramiko
-import os, os.path, time
-import re
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
-from django.views import View
-from ..models import Connect
-from ..forms import NacmForm, IpFormset
-from .. import models
-
+{% block container %}
 class config_codeBased(View):
 	ip_list = []
 
@@ -66,14 +56,14 @@ class config_codeBased(View):
 
 				# jika gagal terkoneksi	
 				except paramiko.AuthenticationException:
-					error_conf(request, collect_config, "</br>Authentication failed, please verify your credentials")
+					error_conf(request, collect_config, "Authentication failed, please verify your credentials")
 				except paramiko.SSHException as sshException:
-					error_conf(request, collect_config, "</br>Could not establish SSH connection: %s" % sshException)
+					error_conf(request, collect_config, "Could not establish SSH connection: %s" % sshException)
 				except socket.timeout as e:
-					error_conf(request, collect_config, "</br>Connection timed out")
+					error_conf(request, collect_config, "Connection timed out")
 				except Exception as e:
 					ssh_client.close()
-					error_conf(request, collect_config, "</br>Exception in connecting to the server")
+					error_conf(request, collect_config, "Exception in connecting to the server")
 		return HttpResponseRedirect('code_based')
 
 	# hal yang dilakukan ketika melakukan action GET
@@ -81,8 +71,4 @@ class config_codeBased(View):
 		formm = NacmForm()
 		ipform = IpFormset()
 		return render(request, 'config/code_based.html', {'form': formm, 'logins': Connect.objects.all(), 'ipform': ipform })
-
-def error_conf(request, collect_config, error1):
-	conf_error = collect_config+error1
-	messages.error(request, conf_error)
-	result_flag = False
+{% endblock %}

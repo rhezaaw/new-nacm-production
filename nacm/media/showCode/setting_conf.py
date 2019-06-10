@@ -9,8 +9,8 @@ from .. import models
 from ..models import c_Setting as settings
 
 def Settings_display(request):
+
 	settForm = SettingForm()
-	# settings.objects.all() mengumpulkan semua object pada tables setting di databse
 	return render(request, 'setting/display.html', {'settings': settings.objects.all(), 'form': settForm })
 
 def Settings_add(request):
@@ -27,11 +27,8 @@ def Settings_add(request):
 		return render(request, 'setting/add.html', {'settings': settings.objects.all(), 'form': settForm })
 
 def Settings_edit(request, pk):
-	# pk merupakan primary key
-	# mengambil objek sesuai primary key jika tidak error
 	setting = get_object_or_404(settings, pk=pk)
 	status = 'success'
-	# memfilter berdasarkan nama
 	nameValue = settings.objects.filter(pk=pk).values('sett_name')[0];
 	name = nameValue['sett_name']
 
@@ -45,8 +42,6 @@ def Settings_edit(request, pk):
 		return render(request, 'setting/edit.html', {'form': form, 'name': name, 'status': status })
 
 def Settings_delete(request, pk):
-	# mengambil objek sesuai primary key 
     settingdel = settings.objects.get(pk=pk)
-	# menghapus data berdasarkan primary key
     settingdel.delete()
     return HttpResponseRedirect('/setting')

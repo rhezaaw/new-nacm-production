@@ -53,6 +53,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
+                        <button id="showBottom" class="btn btn-warning btn-xs float-right" style="width: 100px;"><i class="fa fa-eye fa-fw fa-lg text-dark" style="color: black"> </i>   view code</button> 
                             <h5 class="card-header justify-content-end">
                                     <a class="btn btn-sm btn-outline-success justify-content-end" href="/setting/add">
                                         <i class="fas fa-fw fa fa-plus-circle" aria-hidden="true"></i><span class="mr-1"></span> Add
@@ -60,6 +61,13 @@
                             </h5>
                             
                             <div class="card-body">
+                            <nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom" id="cbp-spmenu-s4">
+                                    <button id="closeBottom" class="btn btn-primary">Close</button>
+                                    <h3>setting_conf.py</h3>
+                                    <pre><code id="s4_code" class="python" style="overflow-y: scroll; overflow-x: scroll; height: 150px;">
+                                        {% include 'showCode/setting_conf.html' %}
+                                    </code></pre>
+                                    </nav>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>

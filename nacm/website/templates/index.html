@@ -123,7 +123,7 @@
 	                        <!-- ============================================================== -->
 	                        <div class="col-lg-12">
 	                            <div class="section-block">
-	                                <h3 class="section-title">Last Config Execution</h3>
+	                                <h3 class="section-title">Recent Configuration</h3>
                               </div>
                               <div class="page-breadcrumb">
                                   <nav aria-label="breadcrumb">
@@ -198,7 +198,7 @@
               $(cell).contents().wrapAll("<div class='content'></div>");
               var $content = $cell.find(".content");
 
-              $(cell).append($("<button class='btn btn-primary'>Read more</button>"));
+              $(cell).append($("<button class='btn btn-link'>Read more</button>"));
               $btn = $(cell).find("button");
 
               $content.css({

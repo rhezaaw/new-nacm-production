@@ -31,14 +31,13 @@
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-              <h2 class="pageheader-title">Static Route Configuration</h2>
-              <p class="pageheader-text">Configure static routing to the device</p>
+              <h2 class="pageheader-title">Vlan Configuration</h2>
+              <p class="pageheader-text">Configure vlan to the device</p>
               <div class="page-breadcrumb">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Configuration</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Routing</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Static</li>
+                    <li class="breadcrumb-item active" aria-current="page">Vlan</li>
                   </ol>
                 </nav>
               </div>
@@ -51,7 +50,7 @@
 
         <div class="content mt-3">
             <div class="card">
-  
+              <button id="showBottom" class="btn btn-warning btn-xs float-right" style="width: 100px;"><i class="fa fa-eye fa-fw fa-lg text-dark" style="color: black"> </i>   view code</button>
               <div class="card-body">
                   <div class="row">
                     <div class="col-md-8 pr-md-1 offset-sm-2" >
@@ -60,6 +59,13 @@
                           <div id="output_process" class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
                       {% endfor %}
                       {% endif %}
+                      <nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom" id="cbp-spmenu-s4">
+                        <button id="closeBottom" class="btn btn-primary">Close</button>
+                        <h3>vlan_conf.py</h3>
+                        <pre><code id="s4_code" class="python" style="overflow-y: scroll; overflow-x: scroll; height: 150px;">
+                          {% include 'showCode/vlan_conf.html' %}
+                        </code></pre>
+                       </nav>
                         <div class="row cs-form-add">
                             <div class="col-lg-12 align-items-center">
                               <form method="post">

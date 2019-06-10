@@ -1,15 +1,4 @@
-import paramiko
-import os, os.path, time, socket
-import re
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
-from django.views import View
-from ..models import Connect
-from ..forms import NacmForm, IpFormset
-from .. import models
-from netaddr import IPAddress, IPNetwork
-
+{% block container %}
 class vlan(View):
 	ip_list = []
 	
@@ -66,7 +55,7 @@ class vlan(View):
 							# sehingga mengeleminasi nilai kosong
 							if new_line != '':
 								config_send = eval(new_line)
-								collect_config = collect_config + config_send+"</br>" 
+								collect_config = collect_config + config_send+"" 
 								print(config_send+" ini config send")
 								# mengirim perintah yang akan dikonfig
 								# menggunakan non-interactive shell
@@ -99,14 +88,14 @@ class vlan(View):
 
 				# jika gagal terkoneksi
 				except paramiko.AuthenticationException:
-					error_conf(request, collect_config, "</br>Authentication failed, please verify your credentials")
+					error_conf(request, collect_config, "Authentication failed, please verify your credentials")
 				except paramiko.SSHException as sshException:
-					error_conf(request, collect_config, "</br>Could not establish SSH connection: %s" % sshException)
+					error_conf(request, collect_config, "Could not establish SSH connection: %s" % sshException)
 				except socket.timeout as e:
-					error_conf(request, collect_config, "</br>Connection timed out")
+					error_conf(request, collect_config, "Connection timed out")
 				except Exception as e:
 					ssh_client.close()
-					error_conf(request, collect_config, "</br>Exception in connecting to the server")
+					error_conf(request, collect_config, "Exception in connecting to the server")
 
 		return HttpResponseRedirect('vlan')
 
@@ -115,8 +104,4 @@ class vlan(View):
 		formm = NacmForm()
 		ipform = IpFormset()
 		return render(request, 'config/vlan.html', {'form': formm, 'logins': Connect.objects.all(), 'ipform': ipform })
-
-def error_conf(request, collect_config, error1):
-	conf_error = collect_config+error1
-	messages.error(request, conf_error)
-	result_flag = False
+{% endblock %}

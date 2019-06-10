@@ -1,12 +1,4 @@
-import paramiko
-import os, os.path, time
-import re
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
-from ..forms import NacmForm, IpFormset, SettingForm
-from .. import models
-from ..models import c_Setting as settings
+{% block container %}
 
 def Settings_display(request):
 	settForm = SettingForm()
@@ -50,3 +42,5 @@ def Settings_delete(request, pk):
 	# menghapus data berdasarkan primary key
     settingdel.delete()
     return HttpResponseRedirect('/setting')
+
+{% endblock %}
