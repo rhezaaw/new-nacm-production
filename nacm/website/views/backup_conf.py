@@ -72,7 +72,7 @@ def backup(request):
 						print(settings.MEDIA_ROOT)
 						ff.write(backup_conf)
 						ff.close()
-					messages.success(request, "sucess backup configuration "+collect_config)
+					# messages.success(request, "sucess backup configuration "+collect_config)
 					simpanForm.conft = "backup configuration"
 					simpanIp = form.save(commit=False)
 					simpanIp.connect_id = simpanForm

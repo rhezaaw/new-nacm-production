@@ -48,8 +48,9 @@
                 <!-- ============================================================== -->
 
                 <div class="row">
-
+                    <div class="col-lg-12 align-items-center"> <button id="showHelp" class="btn btn-primary btn-xs float-right" style="width: 80px;"><i class="fa fa-smile fa-fw fa-lg"> </i>   HELP?</button></div>
                     <div class="col-lg-12 align-items-center">
+                    <div id="helpBox" class="alert" style="display:none">{% include 'showCode/setting_help.html' %}</div>
                         <form method="post">
                             {% csrf_token %}
 
@@ -222,13 +223,13 @@
                                         <div class="card">
                                             <div class="card-header" role="tab" id="headingOne">
                                                 <div class="mb-0">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"
                                                         aria-expanded="false" aria-controls="collapseOne" class="collapsed">
                                                         <h5 class="accordion-spc">Backup</h5>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div id="collapse4" class="panel-collapse collapse in">
+                                            <div id="collapse5" class="panel-collapse collapse in">
                                                 <div class="form-group card-block">
                                                     <div class="row spacer">
                                                         <div class="col-2">
@@ -251,13 +252,13 @@
                                         <div class="card">
                                             <div class="card-header" role="tab" id="headingOne">
                                                 <div class="mb-0">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse6"
                                                         aria-expanded="false" aria-controls="collapseOne" class="collapsed">
                                                         <h5 class="accordion-spc">Restore</h5>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div id="collapse5" class="panel-collapse collapse in">
+                                            <div id="collapse6" class="panel-collapse collapse in">
                                                 <div class="form-group card-block">
                                                     <div class="row spacer">
                                                         <div class="col-2">
@@ -323,5 +324,20 @@
         <!-- Optional JavaScript -->
         {% include 'assets/js.html' %}
 </body>
+<script>
 
+        $("#showHelp").click(function(){
+        var msg = $('#helpBox').clone();
+        bootbox.alert({
+            className: "dialogWide",
+            title: "Help",
+            message: msg.html(),
+            backdrop: true,
+            centerVertical: true,
+            scrollable: true,
+            size: "lg"
+        });
+    
+        });
+    </script>
 </html>

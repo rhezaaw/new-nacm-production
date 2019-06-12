@@ -1,0 +1,176 @@
+{% block container %}
+
+<div class="container">
+		<div class="col-sm-12">
+
+			<div class="bs-calltoaction bs-calltoaction-primary">
+				<div class="row">
+					<div class="col-md-9 cta-contents">
+						<h1 class="cta-title">Static Routing</h1>
+						<hr style="border-top: 1px solid white;">
+						<div class="cta-desc">
+							<p>
+								fill with static routing configuration syntax using the python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'configure terminal' </br>
+										'ip route {} {} {}'.format(destination,netmask,gateway) </br>
+								</p>
+								parameter list available : </br>
+								<ul>
+									<li>destination</li>
+									<li>netmask</li>
+									<li>prefix</li>
+									<li>gateway</li>
+								</ul>
+							</p>
+						</div>
+					</div>
+					<!-- <div class="col-md-3 cta-button">
+						<a href="#" class="btn btn-lg btn-block btn-primary">Go for It!</a>
+					</div> -->
+				 </div>
+			</div>
+
+			<div class="bs-calltoaction bs-calltoaction-primary">
+					<div class="row">
+						<div class="col-md-9 cta-contents">
+							<h1 class="cta-title">Dynamic Routing</h1>
+							<hr style="border-top: 1px solid white;">
+							<div class="cta-desc">
+							<p>
+								fill with dynamic routing configuration syntax using the python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'configure terminal' </br>
+										'router ospf {}'.format(id_ospf) </br>
+										'network {} {} area {}'.format(network,wildcard,area) </br>
+										'router-id {}'.format(router_id) </br>
+								</p>
+								parameter list available : </br>
+								<ul>
+									<li>id_ospf</li>
+									<li>router_id</li>
+									<li>interface_ospf</li>
+									<li>interface_ripv1</li>
+									<li>interface_ripv2</li>
+									<li>network</li>
+									<li>prefix</li>
+									<li>netmask</li>
+									<li>wildcard</li>
+									<li>area</li>
+								</ul>
+							</p>
+							</div>
+						</div>
+
+					 </div>
+			</div>
+
+			<div class="bs-calltoaction bs-calltoaction-primary">
+					<div class="row">
+						<div class="col-md-9 cta-contents">
+							<h1 class="cta-title">BGP Routing</h1>
+							<hr style="border-top: 1px solid white;">
+							<div class="cta-desc">
+							<p>
+								fill with BGP routing configuration syntax using the python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'configure terminal' </br>
+										'router bgp {}'.format(asn) </br>
+										'neighbor {} remote-as {}'.format(neighbor_address,neighbor_asn) </br>
+										'network {} mask {}'.format(network,netmask) </br>
+								</p>
+								parameter list available : </br>
+								<ul>
+									<li>bgp_name</li>
+									<li>asn</li>
+									<li>router_id</li>
+									<li>neighbor_address</li>
+									<li>neighbor_asn</li>
+									<li>network</li>
+									<li>prefix</li>
+									<li>netmask</li>
+									<li>wildcard</li>
+								</ul>
+							</p>
+							</div>
+						</div>
+
+					 </div>
+			</div>	
+			
+			<div class="bs-calltoaction bs-calltoaction-primary">
+					<div class="row">
+						<div class="col-md-9 cta-contents">
+							<h1 class="cta-title">Vlan</h1>
+							<hr style="border-top: 1px solid white;">
+							<div class="cta-desc">
+							<p>
+								fill with Vlan configuration syntax using the python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'configure terminal' </br>
+										'vlan {}'.format(vlan_id) </br>
+										'name {}'.format(vlan_name) </br>
+										'exit' </br>
+								</p>
+								parameter list available : </br>
+								<ul>
+									<li>vlan_id</li>
+									<li>vlan_name</li>
+									<li>interface</li>
+								</ul>
+							</p>
+							</div>
+						</div>
+	
+					 </div>
+			</div>
+
+			<div class="bs-calltoaction bs-calltoaction-primary">
+					<div class="row">
+						<div class="col-md-9 cta-contents">
+							<h1 class="cta-title">Backup</h1>
+							<hr style="border-top: 1px solid white;">
+							<div class="cta-desc">
+							<p>
+								fill with display configuration syntax using the python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'show running-config'</br>
+								</p>
+							</p>
+							</div>
+						</div>
+
+					 </div>
+			</div>
+
+			<div class="bs-calltoaction bs-calltoaction-primary">
+					<div class="row">
+						<div class="col-md-9 cta-contents">
+							<h1 class="cta-title">Restore</h1>
+							<hr style="border-top: 1px solid white;">
+							<div class="cta-desc">
+							<p>
+								fill with import configuration syntax with python format</br>
+								example for cisco : </br>
+								<p class="solid">
+										'copy flash:{} running-config'.format(fileconf)</br>
+								</p>
+								parameter list available (must use this for filename) : </br>
+								<ul>
+									<li>fileconf</li>
+								</ul>
+							</p>
+							</div>
+						</div>
+
+					 </div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
