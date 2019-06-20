@@ -134,17 +134,22 @@
                                 <div class="form-group">
                                   <div class="row spacer">
                                     <div class="col-8">
-                                      <label>Destination</label>
+                                      <label>Configuration</label>
                                     </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 field_wrapper">
                                       <div class="input-group">
-                                        <input required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" type="text" class="form-control" name="destination">
+                                        <input required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" type="text" class="form-control" name="destination" placeholder="destination">
+                                        <span class="mr-1"></span>
+                                        <input type="text" class="form-control" name="prefix" placeholder="prefix">
+                                        <span class="mr-1"></span>
+                                        <input type="text" class="form-control" name="gateway" placeholder="gateway">
+                                        <a href="javascript:void(0);" class="add_button btn btn-warning" title="Add field">+</a>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                       
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                   <div class="row spacer">
                                     <div class="col-8">
                                       <label>Prefix</label>
@@ -168,7 +173,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </div> -->
                       
                       
                                 <div class="spacer-divide">
@@ -224,5 +229,31 @@
   });
 
 </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      var maxField = 100; //Input fields increment limitation
+      var addButton = $('.add_button'); //Add button selector
+      var wrapper = $('.field_wrapper'); //Input field wrapper
+      var fieldHTML = '<div class="spacer-divide"><div class="input-group"><input required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" type="text" class="form-control" name="destination" placeholder="destination"><span class="mr-1"></span><input type="text" class="form-control" name="prefix" placeholder="prefix"><span class="mr-1"></span><input type="text" class="form-control" name="gateway" placeholder="gateway"><a href="javascript:void(0);" class="remove_button btn btn-danger" title="Add field">-</a></div>'; //New input field html 
+      var x = 1; //Initial field counter is 1
+      
+      //Once add button is clicked
+      $(addButton).click(function(){
+          //Check maximum number of input fields
+          if(x < maxField){ 
+              x++; //Increment field counter
+              $(wrapper).append(fieldHTML); //Add field html
+          }
+      });
+      
+      //Once remove button is clicked
+      $(wrapper).on('click', '.remove_button', function(e){
+          e.preventDefault();
+          $(this).parent('div').remove(); //Remove field html
+          x--; //Decrement field counter
+      });
+  });
+  </script>
 
 </html>

@@ -1,8 +1,8 @@
 {% block container %}
 class config_static(View):
 	ip_list = []
-	
-	# hal yang dilakukan ketika melakukan action POST
+
+	# hal yang dilakukan ketika melakukan action POST	
 	def post(self, request, *args, **kwargs):
 		# mengambil nilai dari form
 		formm = NacmForm(request.POST)
@@ -10,9 +10,9 @@ class config_static(View):
 		upform = UploadForm(request.POST,request.FILES)
 		userValue = formm['username'].value()
 		passValue = formm['password'].value()
-		destination = str(request.POST['destination'])
-		prefix = str(request.POST['prefix'])
-		gateway = str(request.POST['gateway'])
+		destinations = (request.POST.getlist('destination'))
+		prefixs = (request.POST.getlist('prefix'))
+		gateways = (request.POST.getlist('gateway'))
 
 		# jika form valid
 		if ipform.is_valid() and formm.is_valid():
@@ -24,10 +24,8 @@ class config_static(View):
 			for form in ipform:
 				ipaddr = form.cleaned_data.get('ipaddr')
 				vendor = form.cleaned_data.get('vendor')
-				networks = str(destination+"/"+prefix)
-				netmask = IPNetwork(networks).netmask
-				collect_config = "Configure on "+str(ipaddr)+" | vendor = "+str(vendor)+""
-
+				collect_config = "<b>Configure on "+str(ipaddr)+" | vendor = "+str(vendor)+"</b>"
+				networks = netmask = wildcard = ""
 				# mengkoneksikan ke perangkat via protokol SSH menggunakan library Paramiko
 				try:
 					ssh_client = paramiko.SSHClient()
@@ -42,33 +40,44 @@ class config_static(View):
 					# hasilnya akan ada \n
 					output_line = ""
 
-					# membaca code tiap line
-					for line in array_read:
-						# menghilangkan \n
-						new_line = re.sub(r'\n','',line)
-						# akan error karena ada nilai kosong dan eval tidak bisa membacanya
-						# sehingga mengeleminasi nilai kosong
-						if new_line != '':
-							config_send = eval(new_line)
-							collect_config = collect_config + config_send+"" 
-							print(config_send+" ini config send")
-							# mengirim perintah yang akan dikonfig
-							# menggunakan non-interactive shell
-							try:
-								stdin, stdout, stderr = ssh_client.exec_command(config_send+"\n")
-								time.sleep(1)
-								results = stdout.read()
-								print (str(results))
-							except:
-								# jika gagal menggunakan interactive shell
+					# membuat perulangan pada network yang di advertise, karena pada advertise network menggunakan form dinamis
+					for x in range(len(destinations)):
+						destination = destinations[x]
+						prefix = prefixs[x]
+						gateway = gateways[x]
+						if prefix != '':
+							networks = str(destination+"/"+prefix)
+							print(networks)
+							netmask = IPNetwork(networks).netmask
+							print(netmask)
+							wildcard = IPNetwork(networks).hostmask
+
+						# membaca code tiap line
+						for line in array_read:
+							# menghilangkan \n
+							new_line = re.sub(r'\n','',line)
+							# akan error karena ada nilai kosong dan eval tidak bisa membacanya
+							# sehingga mengeleminasi nilai kosong
+							if new_line != '':
+								config_send = eval(new_line)
+								collect_config = collect_config + config_send+"</br>" 
+								print(config_send+" ini config send")
+								# mengirim perintah yang akan dikonfig
+								# menggunakan non-interactive shell
 								try:
-									remote_conn.send(config_send+"\n")
+									stdin, stdout, stderr = ssh_client.exec_command(config_send+"\n")
 									time.sleep(1)
-									results = remote_conn.recv(65535)
-									print (results.decode('ascii'))
-									# print (results)
+									results = stdout.read()
+									print (str(results))
 								except:
-									print("error paramiko")
+									# jika gagal menggunakan interactive shell
+									try:
+										remote_conn.send(config_send+"\n")
+										time.sleep(1)
+										results = remote_conn.recv(65535)
+										print (results.decode('ascii'))
+									except:
+										print("error paramiko")
 
 					# menyimpan data ke sqlite
 					count_form = count_form + 1	
@@ -94,10 +103,10 @@ class config_static(View):
 					error_conf(request, collect_config, "Connection timed out")
 				except Exception as e:
 					ssh_client.close()
-					error_conf(request, collect_config, "Exception in connecting to the server")
+					error_conf(request, collect_config, "Exception in connecting to the server: %s" % e)
 
 		return HttpResponseRedirect('routing_static')
-
+	
 	# hal yang dilakukan ketika melakukan action GET
 	def get(self, request, *args, **kwargs):
 		formm = NacmForm()
