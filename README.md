@@ -22,7 +22,7 @@ ___
     git clone https://github.com/rhezaaw/new-nacm-production.git
     cd new-nacm-production
     virtualenv -p python3 env
-    source /env/bin/activate
+    source env/bin/activate
     pip3 install -r requirements.txt
     cd nacm
     python3 manage.py runserver 0.0.0.0:8000
