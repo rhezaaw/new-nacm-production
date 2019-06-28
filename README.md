@@ -14,7 +14,7 @@ ___
 
 # Instalasi
 ## Requirement
-    Install python 3.5+
+    python 3.5+
     virtualenv
     
 ## Quick start
