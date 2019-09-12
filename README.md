@@ -27,7 +27,11 @@ ___
     cd nacm
     python3 manage.py runserver 0.0.0.0:8000
     akses via browser <ip:8000>
-    
+ 
+ ## Readme
+    Pastikan server dapat terhubung ke perangkat yang dituju (router,switch,dll)
+    Pastikan perangkat tujuan (router,switch) menggunakan protokol SSH versi 2
+ 
 ___
 
 #### 1. Main Page
@@ -45,3 +49,4 @@ ___
 ___
 
 ** Keperluan tugas akhir
+rheza.adhyatmaka@gmail.com
