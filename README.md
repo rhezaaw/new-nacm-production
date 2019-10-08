@@ -31,6 +31,7 @@ ___
  ## Readme
     Pastikan server dapat terhubung ke perangkat yang dituju (router,switch,dll)
     Pastikan perangkat tujuan (router,switch) menggunakan protokol SSH versi 2
+    Untuk perangkat cisco aktifkan scp server "ip scp server enable"
  
 ___
 
