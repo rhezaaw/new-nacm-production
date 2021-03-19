@@ -4,7 +4,7 @@ cffi==1.12.2
 cryptography==2.4.2
 Django==2.1.7
 django-widget-tweaks==1.4.3
-djangorestframework==3.9.2
+djangorestframework==3.11.2
 idna==2.8
 netaddr==0.7.19
 paramiko==2.4.2
